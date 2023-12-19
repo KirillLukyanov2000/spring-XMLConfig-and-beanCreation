@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userRepo" class="ru.lukyanov.XMLConfigExample.repo.UserRepo">
+        <property name="userMap">
+            <map>
+                <entry key="1" value-ref="user1"></entry>
+                <entry key="2" value-ref="user2"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="user1" scope="prototype" class="ru.lukyanov.XMLConfigExample.entity.User">
+        <constructor-arg index="0" value="Ivan"></constructor-arg>
+        <constructor-arg index="1" value="pass1"></constructor-arg>
+    </bean>
+    <bean id="user2" scope="prototype" class="ru.lukyanov.XMLConfigExample.entity.User">
+        <constructor-arg index="0" value="Vasya"></constructor-arg>
+        <constructor-arg index="1" value="qwer2"></constructor-arg>
+    </bean>
+    <bean id="userService" class="ru.lukyanov.XMLConfigExample.service.UserService">
+        <constructor-arg ref="userRepo"></constructor-arg>
+    </bean>
+
+</beans>
